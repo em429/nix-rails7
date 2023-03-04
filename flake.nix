@@ -23,6 +23,15 @@
       in
       pkgs.writeShellScriptBin "bootstrap" ''
 
+        if [[ -z "$PROJECT_NAME" ]]; then
+          echo
+          echo "Error: PROJECT_NAME env var must be set!"
+          echo
+          echo "Re-launch like this: 'PROJECT_NAME=candies nix run github:qirpi/nix-rails7#bootsrap'"
+          echo
+          exit 1;
+        fi
+
         mkdir $PROJECT_NAME && cd $PROJECT_NAME
         git init --quiet && git branch -M main
         nix flake init --template github:qirpi/nix-rails7
