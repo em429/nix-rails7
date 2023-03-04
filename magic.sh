@@ -1,23 +1,27 @@
 # Nix Runner
 #!/usr/bin/env -S nix run 'github:clhodapp/nix-runner/32a984cfa14e740a34d14fad16fc479dec72bf07' --
 
-# Interpreter
-#!command bash
-
-# Set Ruby version here -->
-#!package github:bobvanderlinden/nixpkgs-ruby#"ruby-3.2.1"
+## Pure build disabled for now
+##pure
 
 # Registries
 #!registry nixpkgs github:NixOS/nixpkgs
 #!registry nixpkgs-ruby github:bobvanderlinden/nixpkgs-ruby
 
-## Pure build disabled for now
-##pure
+# Set Ruby version here -->
+#!package github:bobvanderlinden/nixpkgs-ruby#"ruby-3.2.1"
+
+# Pure build disabled for now
 ##package nixpkgs#coreutils
 ##package nixpkgs#git
 ##package nixpkgs#bash
 ##package nixpkgs#nix
 ##package nixpkgs#nix-direnv
+
+
+# Interpreter
+#!command bash
+
 
 
 # Start of script
