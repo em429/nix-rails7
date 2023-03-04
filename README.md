@@ -1,6 +1,6 @@
 This is a Rails 7, nix flake based development environment powered by [devenv.sh](https://devenv.sh/). I made this as their default setup is not based on flakes, and while there is docs I wanted something I can refer to and run quickly.
 
-It is the very base of what I use on every project: tailwind, an lsp, linter, and factory_bot+faker for testing.
+It is the very base of what I use on every project: tailwind, LSPs for ruby+html+js, a linter, and factory_bot+faker for testing.
 
 #### Setup using magic.sh
 
