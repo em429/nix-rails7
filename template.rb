@@ -1,12 +1,11 @@
 gem "rails", "~> 7.0.4.2"
 
-
 # Gems
-group :development do
+gem_group :development do
   gem "solargraph"
   gem "rubocop"
 end
-group :test do
+gem_group :test do
   gem 'factory_bot_rails'
   gem 'faker'
 end
