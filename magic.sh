@@ -1,27 +1,3 @@
-#  magic.sh sets up a Rails nix 7 flake template based on devenv.sh, in one go.
-#  If you need more control, I recommend running the commands manually.
-#
-#
-#  Usage:
-#  ------
-#
-#    $ ./magic.sh project-name  
-#    $ cd project-name
-#    $ rails new . 
-#  
-#  NOTE: when prompted to overwrite template files, say no!
-#
-#  Dependencies:
-#  -------------
-#  
-#  - nix the package manager
-#  - currently nix-direnv must also be installed for this to work
-#    until I figure out why it doesn't run through nix run. 
-#
-
-# 'Magic comments' section, powered by nix and nix-runner
-# -------------------------------------------------------
-
 # Nix Runner
 #!/usr/bin/env -S nix run 'github:clhodapp/nix-runner/32a984cfa14e740a34d14fad16fc479dec72bf07' --
 
