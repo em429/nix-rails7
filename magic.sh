@@ -40,6 +40,7 @@ direnv exec . rails --version
 
 # And that's it! :)
 
+echo
 echo "______________________________________________________________"
 echo
 echo "  Your brand new, flake based Rails devenv is ready.."
@@ -49,5 +50,4 @@ echo "  Next: run 'rails new .' inside the project folder."
 echo
 echo "  Have fun!" 
 echo "______________________________________________________________"
-echo
 echo
