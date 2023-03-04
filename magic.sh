@@ -1,26 +1,41 @@
-#  magic.sh sets up everything in one go:
-#    - Creates the project folder and inits a git repo
-#    - Inits the flake template
-#    - git add . and direnv allow to make it work from start
-#    - Runs direnv in the project folder, so it's cached immediately
+#  magic.sh sets up a Rails nix 7 flake template based on devenv.sh, in one go.
+#  If you need more control, I recommend running the commands manually.
+#
 #
 #  Usage:
+#  ------
 #
-#  $ ./magic.sh project-name  
+#    $ ./magic.sh project-name  
+#    $ cd project-name
+#    $ rails new . 
+#  
+#  NOTE: when prompted to overwrite template files, say no!
 #
 #  Dependencies:
+#  -------------
 #  
-#  Currently nix-direnv must be installed for this to work until I figure out
-#  why it doesn't run through nix run.
-# 
+#  - nix the package manager
+#  - currently nix-direnv must also be installed for this to work
+#    until I figure out why it doesn't run through nix run. 
+#
 
+# 'Magic comments' section, powered by nix and nix-runner
+# -------------------------------------------------------
+
+# Nix Runner
 #!/usr/bin/env -S nix run 'github:clhodapp/nix-runner/32a984cfa14e740a34d14fad16fc479dec72bf07' --
 
+# Interpreter
+#!command bash
+
+# Set Ruby version here -->
+#!package github:bobvanderlinden/nixpkgs-ruby#"ruby-3.2.1"
+
+# Registries
 #!registry nixpkgs github:NixOS/nixpkgs
 #!registry nixpkgs-ruby github:bobvanderlinden/nixpkgs-ruby
 
-# Fully pure build (disabled for now)
-# So you must have nix-direnv installed / enabled already.
+## Pure build disabled for now
 ##pure
 ##package nixpkgs#coreutils
 ##package nixpkgs#git
@@ -28,24 +43,31 @@
 ##package nixpkgs#nix
 ##package nixpkgs#nix-direnv
 
-# Ruby
-#!package github:bobvanderlinden/nixpkgs-ruby#"ruby-3.2.1"
 
-# Interpreter
-#!command bash
+# Start of script
+# ---------------
 
+project_name=$1
 
-mkdir $1 && cd $1
-git init && git branch -M main
+mkdir $project_name && cd $project_name
+git init --quiet && git branch -M main
 nix flake init --template github:qirpi/nix-rails7
 git add .
 
 direnv allow .
-direnv exec . rails --version
 direnv exec . ruby -v
+direnv exec . rails --version
 
+# And that's it! :)
+
+echo "______________________________________________________________"
 echo
-echo "-----------------------------------------------------"
-echo "  Your brand new Rails devenv is ready.. Have fun!   "
-echo "_____________________________________________________"
+echo "  Your brand new, flake based Rails devenv is ready.."
+echo 
+echo
+echo "  Next: run 'rails new .' inside the project folder."
+echo
+echo "  Have fun!" 
+echo "______________________________________________________________"
+echo
 echo
